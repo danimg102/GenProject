@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :patients
+
+  resources :items
+
+  resources :nomenclators
+
   resources :systems
 
   # The priority is based upon order of creation: first created -> highest priority.
