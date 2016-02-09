@@ -1,0 +1,45 @@
+<%= form_for @value, :html => { :class => "form-horizontal value" } do |f| %>
+
+    <% if @value.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@value.errors.count, "error") %> prohibited this value from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @value.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :attrib_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :attrib_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@value[:attrib_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :value, :class => 'form-control' %>
+    </div>
+    <%= error_span(@value[:value]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :patient_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :patient_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@value[:patient_id]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            values_path, :class => 'btn btn-default' %>
+
+<% end %>

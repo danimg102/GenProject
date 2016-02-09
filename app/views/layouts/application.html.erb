@@ -48,9 +48,20 @@
         <a class="navbar-brand" href="#">GenProject</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Systems", systems_path  %></li>
-            <li><% link_to "Link2", "/path2"  %></li>
-            <li><% link_to "Link3", "/path3"  %></li>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Tables
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dLabel">
+                <li><%= link_to "Systems", systems_path  %></li>
+                <li><%= link_to "Nomenclators", nomenclators_path  %></li>
+                <li><%= link_to "Items", items_path  %></li>
+                <li><%= link_to "Patients", patients_path  %></li>
+                <li><%= link_to "Attributes", attribs_path  %></li>
+                <li><%= link_to "Values", values_path  %></li>
+              </ul>
+            </div>
           </ul>
         </div>
       </div>
