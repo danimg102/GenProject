@@ -1,3 +1,4 @@
+
 <%= form_for @attrib, :html => { :class => "form-horizontal attrib" } do |f| %>
 
     <% if @attrib.errors.any? %>
@@ -47,6 +48,6 @@
 
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            attribs_path, :class => 'btn btn-default' %>
+              system_attribs_path(@attrib.system_id), :class => 'btn btn-default' %>
 
 <% end %>

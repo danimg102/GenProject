@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :values
 
-  resources :attribs
+  #resources :attribs
 
   resources :patients
 
@@ -9,7 +9,13 @@ Rails.application.routes.draw do
 
   resources :nomenclators
 
-  resources :systems
+  resources :systems do
+    #get :attributes, on: :member
+    resources :attribs
+  end
+  #get 'systems/:id/attributes' => 'systems#attributes'
+
+  #get "systems/1"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

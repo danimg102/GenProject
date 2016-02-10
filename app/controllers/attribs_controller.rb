@@ -4,7 +4,9 @@ class AttribsController < ApplicationController
   # GET /attribs
   # GET /attribs.json
   def index
-    @attribs = Attrib.all
+    query = "system_id = #{params[:system_id]}"
+    @attribs = Attrib.where(query)
+    #@attribs = Attrib.all
   end
 
   # GET /attribs/1
@@ -15,6 +17,7 @@ class AttribsController < ApplicationController
   # GET /attribs/new
   def new
     @attrib = Attrib.new
+    @attrib.system_id = params[:system_id]
   end
 
   # GET /attribs/1/edit
@@ -24,6 +27,7 @@ class AttribsController < ApplicationController
   # POST /attribs
   # POST /attribs.json
   def create
+    #system = System.find(params[:system_id])
     @attrib = Attrib.new(attrib_params)
 
     respond_to do |format|
@@ -38,7 +42,7 @@ class AttribsController < ApplicationController
   end
 
   # PATCH/PUT /attribs/1
-  # PATCH/PUT /attribs/1.json
+  # PATCH/PUT /attribs/1.jsonF
   def update
     respond_to do |format|
       if @attrib.update(attrib_params)
@@ -62,13 +66,13 @@ class AttribsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_attrib
-      @attrib = Attrib.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_attrib
+    @attrib = Attrib.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def attrib_params
-      params.require(:attrib).permit(:system_id, :name, :type, :extra)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def attrib_params
+    params.require(:attrib).permit(:system_id, :name, :type, :extra)
+  end
 end
