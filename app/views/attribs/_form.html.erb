@@ -1,5 +1,5 @@
 
-<%= form_for @attrib, :html => { :class => "form-horizontal attrib" } do |f| %>
+<%= form_for :attrib,as: :post,url: system_attribs_path(@attrib.system_id), :html => { :class => "form-horizontal attrib" } do |f| %>
 
     <% if @attrib.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -31,11 +31,11 @@
     <%= error_span(@attrib[:name]) %>
   </div>
   <div class="control-group">
-    <%= f.label :type, :class => 'control-label' %>
+    <%= f.label :attr_type, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :type, :class => 'form-control' %>
+      <%= f.text_field :attr_type, :class => 'form-control' %>
     </div>
-    <%= error_span(@attrib[:type]) %>
+    <%= error_span(@attrib[:attr_type]) %>
   </div>
   <div class="control-group">
     <%= f.label :extra, :class => 'control-label' %>

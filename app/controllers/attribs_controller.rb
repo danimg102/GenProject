@@ -32,7 +32,7 @@ class AttribsController < ApplicationController
 
     respond_to do |format|
       if @attrib.save
-        format.html { redirect_to @attrib, notice: 'Attrib was successfully created.' }
+        format.html { redirect_to system_attribs_path(@attrib.system_id), notice: 'Attrib was successfully created.' }
         format.json { render :show, status: :created, location: @attrib }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class AttribsController < ApplicationController
   def destroy
     @attrib.destroy
     respond_to do |format|
-      format.html { redirect_to attribs_url, notice: 'Attrib was successfully destroyed.' }
+      format.html { redirect_to system_attribs_path(@attrib.system_id), notice: 'Attrib was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,6 +73,6 @@ class AttribsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def attrib_params
-    params.require(:attrib).permit(:system_id, :name, :type, :extra)
+    params.require(:attrib).permit(:system_id, :name, :attr_type, :extra)
   end
 end

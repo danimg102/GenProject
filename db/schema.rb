@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209002546) do
+ActiveRecord::Schema.define(version: 20160210204236) do
 
   create_table "attribs", force: true do |t|
     t.integer  "system_id"
     t.string   "name"
-    t.string   "type"
+    t.string   "attr_type"
     t.string   "extra"
     t.datetime "created_at"
     t.datetime "updated_at"
