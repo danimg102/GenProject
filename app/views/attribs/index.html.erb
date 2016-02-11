@@ -17,17 +17,17 @@
   <tbody>
     <% @attribs.each do |attrib| %>
       <tr>
-        <td><%= link_to attrib.id, attrib_path(attrib) %></td>
+        <td><%= link_to attrib.id, system_attrib_path(system_id:attrib.system_id, id:attrib.id) %></td>
         <td><%= attrib.system_id %></td>
         <td><%= attrib.name %></td>
-        <td><%= attrib.type %></td>
+        <td><%= attrib.attr_type %></td>
         <td><%= attrib.extra %></td>
         <td><%=l attrib.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_attrib_path(attrib), :class => 'btn btn-default btn-xs' %>
+                      edit_system_attrib_path(system_id:attrib.system_id, id:attrib.id), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      attrib_path(attrib),
+                      system_attrib_path(system_id:attrib.system_id, id:attrib.id),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -38,5 +38,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_attrib_path,
+            new_system_attrib_path,
             :class => 'btn btn-primary' %>
