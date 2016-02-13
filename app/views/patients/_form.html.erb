@@ -1,4 +1,13 @@
-<%= form_for @patient, :html => { :class => "form-horizontal patient" } do |f| %>
+<%
+   # TODO: arreglar esto que esta feo
+   if @patient.new_record?
+     path_to_send = system_patients_path(system_id:@patient.system_id)
+   else
+     path_to_send = system_patient_path(system_id:@patient.system_id, id:@patient.id)
+   end
+%>
+
+<%= form_for @patient, url: path_to_send, :html => { :class => "form-horizontal patient" } do |f| %>
 
   <% if @patient.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -16,18 +25,21 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.label :system_id, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :system_id, :class => 'form-control' %>
+    </div>
     <%= f.label :code, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :code, :class => 'form-control' %>
     </div>
-    <%=f.error_span(:code) %>
   </div>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                patients_path, :class => 'btn btn-default' %>
+                  system_patients_path, :class => 'btn btn-default' %>
     </div>
   </div>
 

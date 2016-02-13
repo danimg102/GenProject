@@ -10,6 +10,8 @@
   <dd><%= @nomenclator.description %></dd>
 </dl>
 
+
+<%= link_to 'Values', nomenclator_items_path(@nomenclator) %>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               nomenclators_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

@@ -46,7 +46,7 @@ class AttribsController < ApplicationController
   def update
     respond_to do |format|
       if @attrib.update(attrib_params)
-        format.html { redirect_to @attrib, notice: 'Attrib was successfully updated.' }
+        format.html { redirect_to system_attrib_path(@attrib.system_id, @attrib.id), notice: 'Attrib was successfully updated.' }
         format.json { render :show, status: :ok, location: @attrib }
       else
         format.html { render :edit }
