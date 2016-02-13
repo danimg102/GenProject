@@ -5,13 +5,19 @@ Rails.application.routes.draw do
 
   resources :patients
 
-  resources :items
+  resources :nomenclators do
+    resources :items
+  end
 
-  resources :nomenclators
+  #daniel_path(a, b)
+  # patch "/esto/aqui/:algo/otra_cosa/:otro", :as => :daniel
+
 
   resources :systems do
     #get :attributes, on: :member
-    resources :attribs
+    resources :attribs do
+      #resources :values
+    end
   end
   #get 'systems/:id/attributes' => 'systems#attributes'
 

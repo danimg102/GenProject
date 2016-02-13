@@ -16,16 +16,16 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= link_to item.id, item_path(item) %></td>
+        <td><%= link_to item.id, nomenclator_item_path(item.nomenclator_id, item.id) %></td>
         <td><%= item.nomenclator_id %></td>
         <td><%= item.value %></td>
         <td><%= item.description %></td>
         <td><%=l item.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_item_path(item), :class => 'btn btn-default btn-xs' %>
+                      edit_nomenclator_item_path(item.nomenclator_id, item.id), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      item_path(item),
+                      nomenclator_item_path(item.nomenclator_id, item.id),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -36,5 +36,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_item_path,
+            new_nomenclator_item_path,
             :class => 'btn btn-primary' %>
