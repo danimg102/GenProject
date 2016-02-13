@@ -1,5 +1,13 @@
+<%
+   # TODO: arreglar esto que esta feo
+   if @attrib.new_record?
+     path_to_send = system_attribs_path(system_id:@attrib.system_id)
+   else
+     path_to_send = system_attrib_path(system_id:@attrib.system_id, id:@attrib.id)
+   end
+%>
 
-<%= form_for :attrib,as: :post,url: system_attribs_path(@attrib.system_id), :html => { :class => "form-horizontal attrib" } do |f| %>
+<%= form_for @attrib, url: path_to_send, :html => { :class => "form-horizontal attrib" } do |f| %>
 
     <% if @attrib.errors.any? %>
     <div id="error_expl" class="panel panel-danger">

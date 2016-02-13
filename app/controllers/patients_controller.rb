@@ -15,6 +15,7 @@ class PatientsController < ApplicationController
   # GET /patients/new
   def new
     @patient = Patient.new
+    @patient.system_id = params[:system_id]
   end
 
   # GET /patients/1/edit
@@ -28,7 +29,7 @@ class PatientsController < ApplicationController
 
     respond_to do |format|
       if @patient.save
-        format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
+        format.html { redirect_to system_patients_path, notice: 'Patient was successfully created.' }
         format.json { render :show, status: :created, location: @patient }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
+        format.html { redirect_to system_patient_path(@patient.system_id, @patient.id), notice: 'Patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @patient }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class PatientsController < ApplicationController
   def destroy
     @patient.destroy
     respond_to do |format|
-      format.html { redirect_to patients_url, notice: 'Patient was successfully destroyed.' }
+      format.html { redirect_to system_patients_path, notice: 'Patient was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:code)
+      params.require(:patient).permit(:system_id, :code)
     end
 end
