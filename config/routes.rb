@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   #resources :attribs
 
-  resources :patients
+  #resources :patients
 
   resources :nomenclators do
     resources :items
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :attribs do
       #resources :values
     end
+    resources :patients
   end
   #get 'systems/:id/attributes' => 'systems#attributes'
 
