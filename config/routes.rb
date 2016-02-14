@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       #resources :values
     end
     resources :patients do
-      resources :values
+      resources :attvalues
     end
   end
   #get 'systems/:id/attributes' => 'systems#attributes'
