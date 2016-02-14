@@ -17,7 +17,7 @@ class ValuesControllerTest < ActionController::TestCase
   end
 
   test "should create value" do
-    assert_difference('Value.count') do
+    assert_difference('Attvalue.count') do
       post :create, value: { attrib_id: @value.attrib_id, patient_id: @value.patient_id, value: @value.value }
     end
 
@@ -40,7 +40,7 @@ class ValuesControllerTest < ActionController::TestCase
   end
 
   test "should destroy value" do
-    assert_difference('Value.count', -1) do
+    assert_difference('Attvalue.count', -1) do
       delete :destroy, id: @value
     end
 

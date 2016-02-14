@@ -8,10 +8,16 @@
   <dd><%= @patient.code %></dd>
 </dl>
 
-<dl>
+<dl class="dl-horizontal">
   <% @patient_data.each do |p| %>
-      <dt><strong><%= p.name %>:</strong></dt>
-      <dd><%= p.value %></dd>
+      <dt><strong><%= model_class.human_attribute_name(p.name) %>:</strong></dt>
+      <dd>
+        <% if p.value.nil? %>
+            ----
+        <% else %>
+            <%= p.value %>
+        <% end %>
+      </dd>
   <% end %>
 </dl>
 
