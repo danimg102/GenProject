@@ -8,6 +8,14 @@
   <dd><%= @patient.code %></dd>
 </dl>
 
+<dl>
+  <% @patient_data.each do |p| %>
+      <dt><strong><%= p.name %>:</strong></dt>
+      <dd><%= p.value %></dd>
+  <% end %>
+</dl>
+
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
             system_patients_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
