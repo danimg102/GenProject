@@ -14,9 +14,9 @@ class PatientsController < ApplicationController
     #@patient_data = Attrib.joins("LEFT JOIN genetics_development.`values` ON attribs.id = genetics_development.`values`.attrib_id").where("genetics_development.`values`.patient_id = #{@patient.id}")
     #@patient_data = Attrib.includes(:values).where('values.patient_id = ?', @patient.id).references(:values)
     #TODO:Ver por que la consulta no me hace bien el LEFT JOIN
-    @patient_data = Attrib.find_by_sql("SELECT * FROM attribs LEFT OUTER JOIN attvalues ON attribs.id = attvalues.attrib_id
-             WHERE attribs.system_id = #{@patient.system_id} AND attvalues.patient_id = #{@patient.id}")
-    #@patient_data = Attrib.eager_load(:attvalues)
+    # @patient_data = Attrib.find_by_sql("SELECT * FROM attribs LEFT OUTER JOIN attvalues ON attribs.id = attvalues.attrib_id
+    #          WHERE attribs.system_id = #{@patient.system_id} AND attvalues.patient_id = #{@patient.id}")
+    @patient_data = Attrib.eager_load(:attvalues)
     #@patient_data = Attvalue.where({patient_id: @patient.id}).joins("as vals RIGHT JOIN attribs ON attribs.id = vals.attrib_id")
   end
 
