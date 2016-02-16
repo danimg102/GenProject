@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214052803) do
+ActiveRecord::Schema.define(version: 20160216231126) do
 
   create_table "attribs", force: true do |t|
     t.integer  "system_id"
@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(version: 20160214052803) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "system_id"
+  end
+
+  create_table "patients_systems", id: false, force: true do |t|
+    t.integer "patient_id"
+    t.integer "system_id"
   end
 
   create_table "systems", force: true do |t|

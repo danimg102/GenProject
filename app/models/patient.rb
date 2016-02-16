@@ -1,5 +1,5 @@
 class Patient < ActiveRecord::Base
-  belongs_to :system
+  #belongs_to :system
   has_many :attvalues, dependent: :destroy
   has_and_belongs_to_many :systems
 
