@@ -29,8 +29,16 @@ class PatientsController < ApplicationController
 
   # GET /patients/1/edit
   def edit
-    @system_attributes = Attrib.find_by_sql("SELECT * FROM attribs LEFT OUTER JOIN attvalues ON attribs.id = attvalues.attrib_id
-             WHERE attribs.system_id = #{@patient.system_id} AND attvalues.patient_id = #{@patient.id}")
+    #@system_attributes = Attrib.find_by_sql("SELECT * FROM attribs LEFT OUTER JOIN attvalues ON attribs.id = attvalues.attrib_id
+    #         WHERE attribs.system_id = #{@patient.system_id} AND attvalues.patient_id = #{@patient.id}")
+    @system_attributes = Attrib.joins(:attvalues)
+    @system_attributes = @system_attributes.where(:system_id => @patient.system_id)
+    @system_attributes = @system_attributes.where(:patient_id => @patient.id)
+    #@system_attributes = @system_attributes.order(:name)
+    #@system_attributes = @system_attributes.where(:date = Time.now)
+
+    @system = System.find(params[:system_id])
+    @system_attributes = @system.attribs
   end
 
   # POST /patients

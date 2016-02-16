@@ -1,0 +1,29 @@
+1. new
+- @attrs = consulta_que_devuelve_los_attrs_de_un_sistema(system_id)
+
+2. vista _form
+for attr in @attrs
+  name = attr.name
+  value = @patient.get_value_for_attribute(attr.id)
+  case attr.attr_type
+    when "text"
+      to_show = text_field_tag name, value
+    when "bool"
+      to_show = check_box_tag name, value
+  end
+end
+
+3. create
+@attrs = la_misma_consulta_de_antes(system_id)
+for attr in @attrs
+  @patient.set_value_for_attributes(attr.id, params[attr.name])
+end
+
+4. edit
+- lo mismo que en el new
+
+5. en la vista _form
+- lo mismo que en la otra
+
+6. update
+- lo mismo que en el create
