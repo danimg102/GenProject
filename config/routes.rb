@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #resources :values
+  #resources :attvalues
 
   #resources :attribs
 
@@ -16,10 +16,10 @@ Rails.application.routes.draw do
   resources :systems do
     #get :attributes, on: :member
     resources :attribs do
-      #resources :values
+      #resources :attvalues
     end
     resources :patients do
-      resources :values
+      resources :attvalues
     end
   end
   #get 'systems/:id/attributes' => 'systems#attributes'

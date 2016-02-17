@@ -1,34 +1,34 @@
-class ValuesController < ApplicationController
+class AttvaluesController < ApplicationController
   before_action :set_value, only: [:show, :edit, :update, :destroy]
 
-  # GET /values
-  # GET /values.json
+  # GET /attvalues
+  # GET /attvalues.json
   def index
-    @values = Value.all
+    @values = Attvalue.all
   end
 
-  # GET /values/1
-  # GET /values/1.json
+  # GET /attvalues/1
+  # GET /attvalues/1.json
   def show
   end
 
-  # GET /values/new
+  # GET /attvalues/new
   def new
-    @value = Value.new
+    @value = Attvalue.new
   end
 
-  # GET /values/1/edit
+  # GET /attvalues/1/edit
   def edit
   end
 
-  # POST /values
-  # POST /values.json
+  # POST /attvalues
+  # POST /attvalues.json
   def create
-    @value = Value.new(value_params)
+    @value = Attvalue.new(value_params)
 
     respond_to do |format|
       if @value.save
-        format.html { redirect_to @value, notice: 'Value was successfully created.' }
+        format.html { redirect_to @value, notice: 'Attvalue was successfully created.' }
         format.json { render :show, status: :created, location: @value }
       else
         format.html { render :new }
@@ -37,12 +37,12 @@ class ValuesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /values/1
-  # PATCH/PUT /values/1.json
+  # PATCH/PUT /attvalues/1
+  # PATCH/PUT /attvalues/1.json
   def update
     respond_to do |format|
       if @value.update(value_params)
-        format.html { redirect_to @value, notice: 'Value was successfully updated.' }
+        format.html { redirect_to @value, notice: 'Attvalue was successfully updated.' }
         format.json { render :show, status: :ok, location: @value }
       else
         format.html { render :edit }
@@ -51,12 +51,12 @@ class ValuesController < ApplicationController
     end
   end
 
-  # DELETE /values/1
-  # DELETE /values/1.json
+  # DELETE /attvalues/1
+  # DELETE /attvalues/1.json
   def destroy
     @value.destroy
     respond_to do |format|
-      format.html { redirect_to values_url, notice: 'Value was successfully destroyed.' }
+      format.html { redirect_to values_url, notice: 'Attvalue was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class ValuesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_value
-      @value = Value.find(params[:id])
+      @value = Attvalue.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

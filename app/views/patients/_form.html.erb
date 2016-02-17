@@ -1,11 +1,13 @@
 <%
    # TODO: arreglar esto que esta feo
    if @patient.new_record?
-     path_to_send = system_patients_path(system_id:@patient.system_id)
+     path_to_send = system_patients_path(system_id: params[:system_id])
    else
-     path_to_send = system_patient_path(system_id:@patient.system_id, id:@patient.id)
+     path_to_send = system_patient_path(system_id: params[:system_id], id:@patient.id)
    end
 %>
+
+<%- model_class = Patient -%>
 
 <%= form_for @patient, url: path_to_send, :html => { :class => "form-horizontal patient" } do |f| %>
 
@@ -25,15 +27,28 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :system_id, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_field :system_id, :class => 'form-control' %>
-    </div>
     <%= f.label :code, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
       <%= f.text_field :code, :class => 'form-control' %>
     </div>
   </div>
+
+    <dl class="dl-horizontal">
+      <% @system_attributes.each do |attr| %>
+          <dt><strong><%= model_class.human_attribute_name(attr.name) %>:</strong></dt>
+          <dd>
+            <%
+               if @patient.new_record?
+                 input_value = ""
+               else
+                 input_value = @patient.get_value_for_attribute(attr.id)
+               end
+            %>
+            <!--<label for="attr" class="control-label col-lg-2"></label>-->
+            <input class="form-control" id="<% attr.id %>" name="<%= attr.name %>" type="<%= attr.attr_type %>" value="<%= input_value %>">
+          </dd>
+      <% end %>
+    </dl>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
