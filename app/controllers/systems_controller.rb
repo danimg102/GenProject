@@ -21,12 +21,6 @@ class SystemsController < ApplicationController
   def edit
   end
 
-
-  def attributes
-    id=params[:id]
-    a=4
-  end
-
   # POST /systems
   # POST /systems.json
   def create
