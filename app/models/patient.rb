@@ -3,8 +3,9 @@ class Patient < ActiveRecord::Base
   has_many :attvalues, dependent: :destroy
   has_and_belongs_to_many :systems
 
+  # This method returns an object 'Attvalue'
   def get_value_object_for_attribute(attr_id)
-    # este devuelve un objeto attr_value
+    return Attvalue.where(attrib_id:attr_id, patient_id:self.id)
   end
 
   def get_value_for_attribute(attr_id)
@@ -18,7 +19,7 @@ class Patient < ActiveRecord::Base
     if object
       object.value = value
     else
-      object = AttValue.create(:attr_id => attr_id, :patient_id => self.id, :value =>fire value)
+      object = Attvalue.create(:attr_id => attr_id, :patient_id => self.id, :value => value)
     end
     object.save
     object
