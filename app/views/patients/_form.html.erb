@@ -33,8 +33,10 @@
     </div>
   </div>
 
+    <% system_attributes = @patient.get_system_attributes(params[:system_id]) %>
+    <% if not system_attributes.nil? %>
     <dl class="dl-horizontal">
-      <% @system_attributes.each do |attr| %>
+      <% system_attributes.each do |attr| %>
           <dt><strong><%= model_class.human_attribute_name(attr.name) %>:</strong></dt>
           <dd>
             <%
@@ -49,6 +51,7 @@
           </dd>
       <% end %>
     </dl>
+    <% end %>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">

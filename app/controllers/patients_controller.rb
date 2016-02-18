@@ -30,7 +30,7 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new
     #@patient.system_id = params[:system_id]
-    @system_attributes = Attrib.where({system_id: params[:system_id]})
+    #@system_attributes = Attrib.where({system_id: params[:system_id]})
   end
 
   # GET /patients/1/edit

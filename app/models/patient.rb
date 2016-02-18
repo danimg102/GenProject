@@ -3,6 +3,8 @@ class Patient < ActiveRecord::Base
   has_many :attvalues, dependent: :destroy
   has_and_belongs_to_many :systems
 
+  validates :code, numericality: {}, presence: true
+
   # This method returns an object 'Attvalue'
   def get_value_object_for_attribute(attr_id)
     return Attvalue.find_by(attrib_id:attr_id, patient_id:self.id)
@@ -44,5 +46,11 @@ class Patient < ActiveRecord::Base
   def save_to_system(system_id)
     system = System.find(system_id)
     system.patients<<self
+  end
+
+  def get_system_attributes(system_id)
+    return Attrib.where({ system_id: system_id })
+  rescue
+    return nil
   end
 end
