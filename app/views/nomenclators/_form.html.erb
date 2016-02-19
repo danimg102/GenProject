@@ -16,20 +16,20 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <%= f.label :name, :class => 'col-sm-2 control-label' %>
     <div class="col-lg-10">
-      <%= f.text_field :name, :class => 'form-control' %>
+      <%= f.text_field :name, :class => 'form-control', placeholder: "Enter the name of the new Nomenclator" %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :description, :class => 'control-label col-lg-2' %>
+    <%= f.label :description, :class => 'col-sm-2 control-label' %>
     <div class="col-lg-10">
-      <%= f.text_field :description, :class => 'form-control' %>
+      <%= f.text_field :description, :class => 'form-control', placeholder: "Enter a description for the new Nomenclator" %>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
+    <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 nomenclators_path, :class => 'btn btn-default' %>
