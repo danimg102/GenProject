@@ -5,19 +5,20 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:nomenclator_id) %>:</strong></dt>
-  <dd><%= @item.nomenclator_id %></dd>
+  <dd><%= @item.get_nomenclator_name(params[:nomenclator_id]) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:value) %>:</strong></dt>
   <dd><%= @item.value %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @item.description %></dd>
 </dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-            nomenclator_items_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-            edit_nomenclator_item_path(@item.nomenclator_id, @item.id), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-            nomenclator_item_path(@item.nomenclator_id, @item.id),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<%= content_for :sidebar do %>
+    <li><%= link_to t('.back', :default => t("helpers.links.back")),
+                nomenclator_items_path %></li>
+    <li><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_nomenclator_item_path(@item.nomenclator_id, @item.id) %></li>
+    <li><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                nomenclator_item_path(@item.nomenclator_id, @item.id),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %></li>
+<% end %>

@@ -4,7 +4,7 @@ class NomenclatorsController < ApplicationController
   # GET /nomenclators
   # GET /nomenclators.json
   def index
-    @nomenclators = Nomenclator.all
+    @nomenclators = Nomenclator.all.page(params[:page]).per(10)
   end
 
   # GET /nomenclators/1

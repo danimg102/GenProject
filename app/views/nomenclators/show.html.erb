@@ -11,13 +11,14 @@
 </dl>
 
 
-<%= link_to 'Values', nomenclator_items_path(@nomenclator) %>
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              nomenclators_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_nomenclator_path(@nomenclator), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              nomenclator_path(@nomenclator),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<%= content_for :sidebar do %>
+    <li><%= link_to t('.values'), nomenclator_items_path(@nomenclator) %></li>
+    <li><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                  edit_nomenclator_path(@nomenclator) %></li>
+    <li><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                  nomenclator_path(@nomenclator),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %></li>
+    <li><%= link_to t('.back', :default => t("helpers.links.back")),
+                nomenclators_path %></li>
+<% end %>

@@ -1,7 +1,9 @@
 class Patient < ActiveRecord::Base
   #belongs_to :system
-  has_many :attvalues, dependent: :destroy
+  has_systems#indexmany :attvalues, dependent: :destroy
   has_and_belongs_to_many :systems
+
+  validates :code, numericality: {}, presence: true
 
   # This method returns an object 'Attvalue'
   def get_value_object_for_attribute(attr_id)
@@ -26,6 +28,7 @@ class Patient < ActiveRecord::Base
     'Could not save attvalue into table'
   end
 
+  # This method returns the 'id' of the first System the patient belongs
   def get_system_id
     return System.joins(:patients).where({ patients: { id: self.id } }).first.id
   end
@@ -44,5 +47,11 @@ class Patient < ActiveRecord::Base
   def save_to_system(system_id)
     system = System.find(system_id)
     system.patients<<self
+  end
+
+  def get_system_attributes(system_id)
+    return Attrib.where({ system_id: system_id })
+  rescue
+    return nil
   end
 end

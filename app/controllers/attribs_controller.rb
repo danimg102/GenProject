@@ -4,8 +4,9 @@ class AttribsController < ApplicationController
   # GET /attribs
   # GET /attribs.json
   def index
-    query = "system_id = #{params[:system_id]}"
-    @attribs = Attrib.where(query)
+    #query = "system_id = #{params[:system_id]}"
+    @attribs = Attrib.where(system_id: params[:system_id]).page(params[:page]).per(10)
+    params[:system_name] = System.find_by(id: params[:system_id]).name
     #@attribs = Attrib.all
   end
 

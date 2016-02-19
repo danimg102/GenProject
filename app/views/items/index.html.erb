@@ -5,25 +5,22 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:nomenclator_id) %></th>
       <th><%= model_class.human_attribute_name(:value) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= link_to item.id, nomenclator_item_path(item.nomenclator_id, item.id) %></td>
-        <td><%= item.nomenclator_id %></td>
         <td><%= item.value %></td>
         <td><%= item.description %></td>
-        <td><%=l item.created_at %></td>
         <td>
+          <%= link_to t('.show'), nomenclator_item_path(item.nomenclator_id, item.id),
+                      :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_nomenclator_item_path(item.nomenclator_id, item.id), :class => 'btn btn-default btn-xs' %>
+                      edit_nomenclator_item_path(item.nomenclator_id, item.id),
+                      :class => 'btn btn-xs btn-warning' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       nomenclator_item_path(item.nomenclator_id, item.id),
                       :method => :delete,
@@ -35,6 +32,10 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_nomenclator_item_path,
-            :class => 'btn btn-primary' %>
+<p><%= paginate @items %></p>
+
+
+<%= content_for :sidebar do %>
+    <li><%= link_to t('.new', :default => t("helpers.links.new")),
+                new_nomenclator_item_path %></li>
+<% end %>

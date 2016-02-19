@@ -5,10 +5,11 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
     param_system_id = params[:system_id]
+    params[:system_name] = System.find_by(id: params[:system_id]).name
     if param_system_id.nil?
-      @patients = Patient.all
+      @patients = Patient.all.page(params[:page]).per(10)
     else
-      @patients = Patient.joins(:systems).where({ systems: { id: param_system_id } })
+      @patients = Patient.joins(:systems).where({ systems: { id: param_system_id } }).page(params[:page]).per(10)
     end
   end
 
@@ -30,7 +31,7 @@ class PatientsController < ApplicationController
   def new
     @patient = Patient.new
     #@patient.system_id = params[:system_id]
-    @system_attributes = Attrib.where({system_id: params[:system_id]})
+    #@system_attributes = Attrib.where({system_id: params[:system_id]})
   end
 
   # GET /patients/1/edit
@@ -97,7 +98,7 @@ class PatientsController < ApplicationController
     respond_to do |format|
       if @patient.update(patient_params)
         @patient.set_attvalues(params)
-        format.html { redirect_to system_patient_path(@patient.get_system_id, @patient.id), notice: 'Patient was successfully updated.' }
+        format.html { redirect_to system_patient_path(params[:system_id], @patient.id), notice: 'Patient was successfully updated.' }
         format.json { render :show, status: :ok, location: @patient }
       else
         format.html { render :edit }
