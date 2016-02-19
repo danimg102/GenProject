@@ -27,18 +27,19 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :code, :class => 'control-label col-lg-2' %>
+    <%= f.label :code, :class => 'col-sm-2 control-label' %>
     <div class="col-lg-10">
-      <%= f.text_field :code, :class => 'form-control' %>
+      <%= f.text_field :code, :class => 'form-control', placeholder: "Enter the code of the new Patient" %>
     </div>
   </div>
 
     <% system_attributes = @patient.get_system_attributes(params[:system_id]) %>
     <% if not system_attributes.nil? %>
-    <dl class="dl-horizontal">
+
       <% system_attributes.each do |attr| %>
-          <dt><strong><%= model_class.human_attribute_name(attr.name) %>:</strong></dt>
-          <dd>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"><%= model_class.human_attribute_name(attr.name) %></label>
+          <div class="col-lg-10">
             <%
                if @patient.new_record?
                  input_value = ""
@@ -47,10 +48,11 @@
                end
             %>
             <!--<label for="attr" class="control-label col-lg-2"></label>-->
-            <input class="form-control" id="<% attr.id %>" name="<%= attr.name %>" type="<%= attr.attr_type %>" value="<%= input_value %>">
-          </dd>
+            <input class="form-control" id="<% attr.id %>" name="<%= attr.name %>" type="<%= attr.attr_type %>"
+                   value="<%= input_value %>" placeholder="Enter a value">
+          </div>
+        </div>
       <% end %>
-    </dl>
     <% end %>
 
   <div class="form-group">

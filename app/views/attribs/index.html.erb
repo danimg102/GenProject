@@ -1,31 +1,35 @@
 <%- model_class = Attrib -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%= params[:system_name] %> --> <%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:system_id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:type) %></th>
       <th><%= model_class.human_attribute_name(:extra) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @attribs.each do |attrib| %>
       <tr>
-        <td><%= link_to attrib.id, system_attrib_path(system_id:attrib.system_id, id:attrib.id) %></td>
-        <td><%= attrib.system_id %></td>
         <td><%= attrib.name %></td>
         <td><%= attrib.attr_type %></td>
-        <td><%= attrib.extra %></td>
-        <td><%=l attrib.created_at %></td>
         <td>
+          <% if attrib.extra.nil? or attrib.extra == '' %>
+              ----
+          <% else %>
+              <%= attrib.extra %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to t('.show'),
+                      system_attrib_path(system_id:attrib.system_id, id:attrib.id),
+                      :class => 'btn btn-default btn-xs'%>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_system_attrib_path(system_id:attrib.system_id, id:attrib.id), :class => 'btn btn-default btn-xs' %>
+                      edit_system_attrib_path(system_id:attrib.system_id, id:attrib.id),
+                      :class => 'btn btn-xs btn-warning' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       system_attrib_path(system_id:attrib.system_id, id:attrib.id),
                       :method => :delete,
@@ -37,6 +41,10 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_system_attrib_path,
-            :class => 'btn btn-primary' %>
+<p><%= paginate @attribs %></p>
+
+<%= content_for :sidebar do %>
+    <li><%= link_to t('.new', :default => t("helpers.links.new")),
+                new_system_attrib_path %></li>
+    <li><%= link_to t('.back'), system_path(params[:system_id]) %></li>
+<% end %>

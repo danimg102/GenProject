@@ -33,6 +33,8 @@
   </tbody>
 </table>
 
+<p><%= paginate @nomenclators %></p>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_nomenclator_path,
             :class => 'btn btn-primary' %>

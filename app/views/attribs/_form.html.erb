@@ -1,5 +1,5 @@
 <%
-   #TODO: arreglar esto que esta feo
+   # TODO: arreglar esto que esta feo
    if @attrib.new_record?
      path_to_send = system_attribs_path(system_id:@attrib.system_id)
    else
@@ -24,38 +24,36 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :system_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :system_id, :class => 'form-control' %>
-    </div>
-    <%= error_span(@attrib[:system_id]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'form-control' %>
+  <div class="form-group">
+    <%= f.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, :class => 'form-control', placeholder: "Enter the name of the new Attribute" %>
     </div>
     <%= error_span(@attrib[:name]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :attr_type, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :attr_type, :class => 'form-control' %>
+
+  <div class="form-group">
+    <%= f.label :attr_type, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :attr_type, :class => 'form-control', placeholder: "Enter the type of the new Attribute" %>
     </div>
     <%= error_span(@attrib[:attr_type]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :extra, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :extra, :class => 'form-control' %>
+
+  <div class="form-group">
+    <%= f.label :extra, :class => 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :extra, :class => 'form-control', placeholder: "Enter an extra field of the new Attribute" %>
     </div>
     <%= error_span(@attrib[:extra]) %>
   </div>
 
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-              system_attribs_path(@attrib.system_id), :class => 'btn btn-default' %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  system_attribs_path(@attrib.system_id), :class => 'btn btn-default' %>
+    </div>
+  </div>
 
 <% end %>

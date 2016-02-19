@@ -1,6 +1,6 @@
 class Patient < ActiveRecord::Base
   #belongs_to :system
-  has_many :attvalues, dependent: :destroy
+  has_systems#indexmany :attvalues, dependent: :destroy
   has_and_belongs_to_many :systems
 
   validates :code, numericality: {}, presence: true
@@ -28,6 +28,7 @@ class Patient < ActiveRecord::Base
     'Could not save attvalue into table'
   end
 
+  # This method returns the 'id' of the first System the patient belongs
   def get_system_id
     return System.joins(:patients).where({ patients: { id: self.id } }).first.id
   end

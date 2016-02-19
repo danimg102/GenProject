@@ -10,7 +10,10 @@
   <%= @system.description %>
 </p>
 
-<%= link_to 'Edit', edit_system_path(@system) %> |
-<%= link_to 'Attributes', system_attribs_path(@system) %> |
-<%= link_to 'Patients', system_patients_path(@system) %> |
-<%= link_to 'Back', systems_path %>
+
+<%= content_for :sidebar do %>
+    <li><%= link_to t('.edit'), edit_system_path(@system) %></li>
+    <li><%= link_to t('.attributes'), system_attribs_path(@system) %></li>
+    <li><%= link_to t('.patients'), system_patients_path(@system) %></li>
+    <li><%= link_to t('.back'), systems_path %></li>
+<% end %>

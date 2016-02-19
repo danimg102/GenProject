@@ -1,27 +1,26 @@
 <%- model_class = Patient -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%= params[:system_name] %> --> <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:code) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @patients.each do |patient| %>
       <tr>
-        <td><%= link_to patient.id, system_patient_path(patient.get_system_id, patient.id) %></td>
         <td><%= patient.code %></td>
-        <td><%=l patient.created_at %></td>
         <td>
+          <%= link_to t('.show'),
+                      system_patient_path(system_id:params[:system_id], id:patient.id),
+                      :class => 'btn btn-default btn-xs'%>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_system_patient_path(patient.get_system_id, patient.id), :class => 'btn btn-default btn-xs' %>
+                      edit_system_patient_path(params[:system_id], patient.id), :class => 'btn btn-xs btn-warning' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      system_patient_path(patient.get_system_id, patient.id),
+                      system_patient_path(params[:system_id], patient.id),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -31,6 +30,10 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_system_patient_path,
-            :class => 'btn btn-primary' %>
+<p><%= paginate @patients %></p>
+
+<%= content_for :sidebar do %>
+    <li><%= link_to t('.new', :default => t("helpers.links.new")),
+                new_system_patient_path %></li>
+    <li><%= link_to t('.back'), system_path(params[:system_id]) %></li>
+<% end %>
