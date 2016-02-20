@@ -23,12 +23,13 @@
 </dl>
 
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-            system_patients_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-            edit_system_patient_path(params[:system_id], @patient.id), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-            system_patient_path(params[:system_id], @patient.id),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<%= content_for :sidebar do %>
+    <li><%= link_to t('.back', :default => t("helpers.links.back")),
+                system_patients_path %></li>
+    <li><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_system_patient_path(params[:system_id], @patient.id) %></li>
+    <li><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                system_patient_path(params[:system_id], @patient.id),
+                  :method => 'delete',
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %></li>
+<% end %>

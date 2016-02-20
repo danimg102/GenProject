@@ -1,6 +1,6 @@
 class Patient < ActiveRecord::Base
   #belongs_to :system
-  has_systems#indexmany :attvalues, dependent: :destroy
+  #has_systems#indexmany :attvalues, dependent: :destroy
   has_and_belongs_to_many :systems
 
   validates :code, numericality: {}, presence: true
