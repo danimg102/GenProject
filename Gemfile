@@ -17,6 +17,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'kaminari'
+gem 'spreadsheet'
 #gem 'byebug'
 
 # gem 'bcrypt', '~> 3.1.7'
