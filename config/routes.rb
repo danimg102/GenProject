@@ -22,6 +22,9 @@ Rails.application.routes.draw do
       resources :attvalues
     end
   end
+
+  get 'systems/:id/queries' => 'systems#dynamic_queries', as: :dynamic_queries
+
   #get 'systems/:id/attributes' => 'systems#attributes'
 
   #get "systems/1"

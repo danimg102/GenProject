@@ -71,4 +71,10 @@ class SystemsController < ApplicationController
     def system_params
       params.require(:system).permit(:name, :description)
     end
+
+
+  #### DYNAMIC QUERIES
+
+  def dynamic_queries
+  end
 end

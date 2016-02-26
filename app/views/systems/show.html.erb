@@ -15,5 +15,6 @@
     <li><%= link_to t('.edit'), edit_system_path(@system) %></li>
     <li><%= link_to t('.attributes'), system_attribs_path(@system) %></li>
     <li><%= link_to t('.patients'), system_patients_path(@system) %></li>
+    <li><a href="<%= dynamic_queries_path %>"><%= t('.queries') %></a></li>
     <li><%= link_to t('.back'), systems_path %></li>
 <% end %>
