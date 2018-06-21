@@ -2,10 +2,10 @@ GEM
   remote: file:/media/kernel/Data/Programs/Ruby/Gems/rubygems/
   specs:
     actionmailer (4.1.8)
-      actionpack (= 4.1.8)
+      actionpack (= 4.2.5.1)
       actionview (= 4.2.7.1)
       mail (~> 2.5, >= 2.5.4)
-    actionpack (4.1.8)
+    actionpack (4.2.5.1)
       actionview (= 4.2.7.1)
       activesupport (= 4.1.11)
       rack (~> 1.5.2)
